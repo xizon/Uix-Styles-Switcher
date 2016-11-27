@@ -37,6 +37,7 @@ class UixThemeSwitch {
 		add_action( 'admin_init', array( __CLASS__, 'load_helper' ) );
 		add_action( 'admin_menu', array( __CLASS__, 'options_admin_menu' ) );
 		add_filter( 'body_class', array( __CLASS__, 'new_class' ) );
+		add_action( 'wp_footer', array( __CLASS__, 'init_ss' ) );
 		
 	
 	}
@@ -72,8 +73,14 @@ class UixThemeSwitch {
 	 */
 	public static function frontpage_scripts() {
 		
-		wp_enqueue_script( self::PREFIX . '-styleswitcher', self::plug_directory() .'assets/js/styleswitcher.min.js', array( 'jquery' ), self::ver(), true );
-	    wp_enqueue_script( self::PREFIX . '-styleswitcher-library', self::plug_directory() .'assets/js/library.min.js', array( 'jquery' ), self::ver(), true );
+		wp_enqueue_script( self::PREFIX . '-styleswitcher', self::plug_directory() .'assets/js/styleswitcher.min.js', array( 'jquery' ), '1.0', true );
+	    wp_enqueue_script( self::PREFIX . '-styleswitcher-library', self::plug_directory() .'assets/js/library.min.js', array( 'jquery' ), '1.0', true );
+		wp_enqueue_style( self::PREFIX . '-styleswitcher', self::plug_directory() .'assets/css/styleswitch.min.css', false, '1.0', 'all' );
+		
+		
+		//Main stylesheets and scripts to Front-End
+		wp_enqueue_script( self::PREFIX . '-styleswitcher-custom', self::plug_directory() .'assets/js/custom.php', array( 'jquery', self::PREFIX . '-styleswitcher' , self::PREFIX . '-styleswitcher-library'), self::ver(), true );
+		wp_enqueue_style( self::PREFIX . '-styleswitcher-custom', self::plug_directory() .'assets/css/custom.php', array( self::PREFIX . '-styleswitcher' ), self::ver(), 'all' );
 
 	}
 	
@@ -288,10 +295,30 @@ class UixThemeSwitch {
 	 */
 	public static function correct_code( $str ) {
 		
-		$str = str_replace( '{imagepath}', self::plug_directory().'assets/images/', $str );
+		$str = str_replace( '{imagepath}', self::plug_directory().'assets/images/', 
+			  str_replace( '&lt;', '<',
+			  str_replace( '&gt;', '>',
+			
+			 $str 
+		) ) );
 		return $str;
 
 	}
+	
+	/*
+	 * Initialize Styles Switch
+	 *
+	 *
+	 */
+	public static function init_ss( $str ) {
+		
+		echo '<div id="styleswitch"><img id="st-logo" src="'.self::plug_directory().'assets/images/blank.gif" alt="" /></div>';
+
+	}
+	
+	
+	
+	
 		
 	/*
 	 * Returns default custom code
@@ -950,6 +977,9 @@ body.body-font-5 .font-normal {
 		}
 			
 	}
+		
+		
+		
 		
 			
 	
