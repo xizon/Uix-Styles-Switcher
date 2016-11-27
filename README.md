@@ -40,8 +40,6 @@ Initial Release.
 
 ![](https://github.com/xizon/Uix-Styles-Switcher/blob/master/assets/screenshot-1.jpg)
 
-![](https://github.com/xizon/Uix-Styles-Switcher/blob/master/assets/screenshot-2.jpg)
-
 
 
 
