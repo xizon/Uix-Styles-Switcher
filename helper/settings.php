@@ -48,7 +48,7 @@ function uix_styleswitcher_options_page(){
 
 <div class="wrap uix-bg-custom-wrapper">
     
-    <h2><?php _e( 'Uix Styles Switcher HELPER', 'uix-styleswitcher' ); ?></h2>
+    <h2><?php _e( 'Uix Styles Switcher', 'uix-styleswitcher' ); ?></h2>
     <?php
 	
 	if( !isset( $_GET[ 'tab' ] ) ) {
@@ -97,7 +97,7 @@ function uix_styleswitcher_options_page(){
     </h2>
 
     <?php 
-		foreach ( glob( WP_PLUGIN_DIR .'/'.UixThemeSwitch::get_slug(). "/HELPER/tabs/*.php") as $file ) {
+		foreach ( glob( WP_PLUGIN_DIR .'/'.UixShortcodes::get_slug(). "/helper/tabs/*.php") as $file ) {
 			include $file;
 		}	
 	?>
