@@ -15,7 +15,7 @@ if( current_user_can( 'administrator' ) ) {
 
     <form method="post" action="" id="uix-styleswitcher-capability-pages">
     
-        <input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
+    
         <?php wp_nonce_field( 'uix_ss_capabilitysettings' ); ?>
         
         <h4><?php _e( 'The capability for this plugin to be displayed to the pages of front-end you need.', 'uix-styleswitcher' ); ?></h4>
