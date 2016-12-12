@@ -76,7 +76,8 @@ class UixThemeSwitch {
 	
 		$page_ids = get_option( 'uix_ss_opt_capabilitypages_result' );
 		
-		if( self::inc_str( $page_ids, get_the_ID() ) || empty( $page_ids ) ) {
+		
+		if( self::inc_str( $page_ids, get_the_ID() ) || empty( $page_ids ) || $page_ids == get_the_ID() ) {
 			
 			wp_enqueue_script( self::PREFIX . '-styleswitcher', self::plug_directory() .'assets/js/styleswitcher.min.js', array( 'jquery' ), '1.0', true );
 			wp_enqueue_script( self::PREFIX . '-styleswitcher-library', self::plug_directory() .'assets/js/library.min.js', array( 'jquery' ), '1.0', true );
@@ -332,7 +333,7 @@ class UixThemeSwitch {
 		
 		$page_ids = get_option( 'uix_ss_opt_capabilitypages_result' );
 		
-		if( self::inc_str( $page_ids, get_the_ID() ) || empty( $page_ids ) ) {
+		if( self::inc_str( $page_ids, get_the_ID() ) || empty( $page_ids ) || $page_ids == get_the_ID() ) {
 		    echo '<div id="styleswitch"><img id="st-logo" src="'.self::plug_directory().'assets/images/blank.gif" alt="" /></div>';
 		}
 
