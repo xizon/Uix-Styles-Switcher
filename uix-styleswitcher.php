@@ -75,7 +75,7 @@ class UixThemeSwitch {
 	public static function frontpage_scripts() {
 	
 		$page_ids = get_option( 'uix_ss_opt_capabilitypages_result' );
-		
+
 		
 		if( self::inc_str( $page_ids, get_the_ID() ) || empty( $page_ids ) || $page_ids == get_the_ID() ) {
 			
@@ -331,12 +331,8 @@ class UixThemeSwitch {
 	 */
 	public static function init_ss( $str ) {
 		
-		$page_ids = get_option( 'uix_ss_opt_capabilitypages_result' );
+		echo '<div id="styleswitch"><img id="st-logo" src="'.self::plug_directory().'assets/images/blank.gif" alt="" /></div>'."\n\n";
 		
-		if( self::inc_str( $page_ids, get_the_ID() ) || empty( $page_ids ) || $page_ids == get_the_ID() ) {
-		    echo '<div id="styleswitch"><img id="st-logo" src="'.self::plug_directory().'assets/images/blank.gif" alt="" /></div>';
-		}
-
 	}
 	
 	
