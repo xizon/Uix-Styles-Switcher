@@ -5,20 +5,32 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 // variables for the field and option names 
-$hidden_field_name = 'submit_hidden_uix_ss_custom';
+$hidden_field_name = 'submit_hidden_uix_ss_generalsettings';
 
 
 
 // If they did, this hidden field will be set to 'Y'
 if( isset($_POST[ $hidden_field_name ]) && $_POST[ $hidden_field_name ] == 'Y' ) {
 	
-	// Save the posted value in the database
-	update_option( 'uix_ss_opt_cssnewcode', wp_unslash( $_POST[ 'uix_ss_opt_cssnewcode' ] ) );
-	update_option( 'uix_ss_opt_jsnewcode', wp_unslash( $_POST[ 'uix_ss_opt_jsnewcode' ] ) );
+	// Just security thingy that wordpress offers us
+	check_admin_referer( 'uix_ss_generalsettings' );
+	
+	// Only if administrator
+	if( current_user_can( 'administrator' ) ) {
+		
+		
+		update_option( 'uix_ss_opt_cssnewcode', wp_unslash( $_POST[ 'uix_ss_opt_cssnewcode' ] ) );
+		update_option( 'uix_ss_opt_jsnewcode', wp_unslash( $_POST[ 'uix_ss_opt_jsnewcode' ] ) );
+	
+	
+		// Put a "settings saved" message on the screen
+		echo '<div class="updated"><p><strong>'.__('Settings saved.', 'uix-styleswitcher' ).'</strong></p></div>';
 
-
-	// Put a "settings saved" message on the screen
-	echo '<div class="updated"><p><strong>'.__('Settings saved.', 'uix-styleswitcher' ).'</strong></p></div>';
+	
+	}
+	
+	
+	
 
  }  
 
@@ -28,13 +40,13 @@ if( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'general-settings' ) {
 
 ?>
 
-    <form name="form1" method="post" action="">
+    <form method="post" action="">
     
         <input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
+        <?php wp_nonce_field( 'uix_ss_generalsettings' ); ?>
         
-
         <div class="uix-d-tabs">
-            <h3><?php _e( 'Create new <strong>styles</strong> to your website. ', 'uix-styleswitcher' ); ?></h3>
+            <h3><?php _e( 'Create custom "styles" to your website. ', 'uix-styleswitcher' ); ?></h3>
             <div>
                 <table class="form-table">
                   <tr>
@@ -50,7 +62,7 @@ if( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'general-settings' ) {
             </div>
             
             
-            <h3><?php _e( 'Create new <strong>scripts</strong> to your website.', 'uix-styleswitcher' ); ?></h3>
+            <h3><?php _e( 'Create custom "scripts" to your website.', 'uix-styleswitcher' ); ?></h3>
             <div>
             
                 <table class="form-table">
@@ -69,8 +81,6 @@ if( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'general-settings' ) {
             </div>
         </div><!-- /.uix-d-tabs -->    
         
-
-        <?php submit_button(); ?>
         
          <div class="uix-styleswitcher-dialog-mask"></div>
          <div class="uix-styleswitcher-dialog" id="uix-styleswitcher-view-css-container">  
@@ -124,6 +134,10 @@ if( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'general-settings' ) {
 			
 		} ) ( jQuery );
         </script>
+          
+
+        
+        <?php submit_button(); ?>
 
     
     </form>

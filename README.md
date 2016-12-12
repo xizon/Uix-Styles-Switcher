@@ -34,12 +34,14 @@ Initial Release.
 - WP 4.4.2
 - WP 4.5.*
 - WP 4.6.*
+- WP 4.7
 
 
 ###Screenshot
 
 ![](https://github.com/xizon/Uix-Styles-Switcher/blob/master/assets/screenshot-1.jpg)
 
+![](https://github.com/xizon/Uix-Styles-Switcher/blob/master/assets/screenshot-2.jpg)
 
 
 

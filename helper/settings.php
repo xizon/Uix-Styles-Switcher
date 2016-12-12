@@ -48,7 +48,7 @@ function uix_styleswitcher_options_page(){
 
 <div class="wrap uix-bg-custom-wrapper">
     
-    <h2><?php _e( 'Uix Styles Switcher Helper', 'uix-styleswitcher' ); ?></h2>
+    <h2><?php _e( 'Uix Styles Switcher HELPER', 'uix-styleswitcher' ); ?></h2>
     <?php
 	
 	if( !isset( $_GET[ 'tab' ] ) ) {
@@ -79,6 +79,11 @@ function uix_styleswitcher_options_page(){
 		'title'   =>  __( '<i class="dashicons dashicons-admin-generic"></i> Custom Styles & Javascripts', 'uix-styleswitcher' )
 	];
 	
+	$tabs[] = [
+	    'tab'     =>  'capability-settings', 
+		'title'   =>  __( '<i class="dashicons dashicons-welcome-view-site"></i> Capability', 'uix-styleswitcher' )
+	];	
+	
 	
 	?>
     <h2 class="nav-tab-wrapper">
@@ -92,7 +97,7 @@ function uix_styleswitcher_options_page(){
     </h2>
 
     <?php 
-		foreach ( glob( WP_PLUGIN_DIR .'/'.UixThemeSwitch::get_slug(). "/helper/tabs/*.php") as $file ) {
+		foreach ( glob( WP_PLUGIN_DIR .'/'.UixThemeSwitch::get_slug(). "/HELPER/tabs/*.php") as $file ) {
 			include $file;
 		}	
 	?>

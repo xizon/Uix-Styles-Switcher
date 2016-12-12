@@ -38,6 +38,7 @@ class UixThemeSwitch {
 		add_action( 'admin_menu', array( __CLASS__, 'options_admin_menu' ) );
 		add_filter( 'body_class', array( __CLASS__, 'new_class' ) );
 		add_action( 'wp_footer', array( __CLASS__, 'init_ss' ) );
+		add_action( 'wp_ajax_uix_styleswitcher_capability_pages_save_settings', array( __CLASS__, 'save' ) );
 		
 	
 	}
@@ -49,18 +50,18 @@ class UixThemeSwitch {
 	public static  function setup_constants() {
 
 		// Plugin Folder Path.
-		if ( ! defined( 'UIX_PAGEBUILDER_PLUGIN_DIR' ) ) {
-			define( 'UIX_PAGEBUILDER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+		if ( ! defined( 'UIX_SS_PLUGIN_DIR' ) ) {
+			define( 'UIX_SS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 		}
 
 		// Plugin Folder URL.
-		if ( ! defined( 'UIX_PAGEBUILDER_PLUGIN_URL' ) ) {
-			define( 'UIX_PAGEBUILDER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+		if ( ! defined( 'UIX_SS_PLUGIN_URL' ) ) {
+			define( 'UIX_SS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 		}
 
 		// Plugin Root File.
-		if ( ! defined( 'UIX_PAGEBUILDER_PLUGIN_FILE' ) ) {
-			define( 'UIX_PAGEBUILDER_PLUGIN_FILE', __FILE__ );
+		if ( ! defined( 'UIX_SS_PLUGIN_FILE' ) ) {
+			define( 'UIX_SS_PLUGIN_FILE', __FILE__ );
 		}
 	}
 
@@ -72,15 +73,22 @@ class UixThemeSwitch {
 	 *
 	 */
 	public static function frontpage_scripts() {
+	
+		$page_ids = get_option( 'uix_ss_opt_capabilitypages_result' );
 		
-		wp_enqueue_script( self::PREFIX . '-styleswitcher', self::plug_directory() .'assets/js/styleswitcher.min.js', array( 'jquery' ), '1.0', true );
-	    wp_enqueue_script( self::PREFIX . '-styleswitcher-library', self::plug_directory() .'assets/js/library.min.js', array( 'jquery' ), '1.0', true );
-		wp_enqueue_style( self::PREFIX . '-styleswitcher', self::plug_directory() .'assets/css/styleswitch.min.css', false, '1.0', 'all' );
+		if( self::inc_str( $page_ids, get_the_ID() ) || empty( $page_ids ) ) {
+			
+			wp_enqueue_script( self::PREFIX . '-styleswitcher', self::plug_directory() .'assets/js/styleswitcher.min.js', array( 'jquery' ), '1.0', true );
+			wp_enqueue_script( self::PREFIX . '-styleswitcher-library', self::plug_directory() .'assets/js/library.min.js', array( 'jquery' ), '1.0', true );
+			wp_enqueue_style( self::PREFIX . '-styleswitcher', self::plug_directory() .'assets/css/styleswitch.min.css', false, '1.0', 'all' );
+			
+			
+			//Main stylesheets and scripts to Front-End
+			wp_enqueue_script( self::PREFIX . '-styleswitcher-custom', self::plug_directory() .'assets/js/custom.php', array( 'jquery', self::PREFIX . '-styleswitcher' , self::PREFIX . '-styleswitcher-library'), self::ver(), true );
+			wp_enqueue_style( self::PREFIX . '-styleswitcher-custom', self::plug_directory() .'assets/css/custom.php', array( self::PREFIX . '-styleswitcher' ), self::ver(), 'all' );
+	
+		}
 		
-		
-		//Main stylesheets and scripts to Front-End
-		wp_enqueue_script( self::PREFIX . '-styleswitcher-custom', self::plug_directory() .'assets/js/custom.php', array( 'jquery', self::PREFIX . '-styleswitcher' , self::PREFIX . '-styleswitcher-library'), self::ver(), true );
-		wp_enqueue_style( self::PREFIX . '-styleswitcher-custom', self::plug_directory() .'assets/css/custom.php', array( self::PREFIX . '-styleswitcher' ), self::ver(), 'all' );
 
 	}
 	
@@ -166,15 +174,25 @@ class UixThemeSwitch {
 			'83.' . rand( 0, 99 )
 			
 		);
-	
+		
         //Add sub links
 		add_submenu_page(
 			self::HELPER,
-			__( 'Settings', 'uix-styleswitcher' ),
-			__( 'Settings', 'uix-styleswitcher' ),
+			__( 'Capability', 'uix-styleswitcher' ),
+			__( 'Capability', 'uix-styleswitcher' ),
+			'manage_options',
+			'admin.php?page='.self::HELPER.'&tab=capability-settings'
+		);
+		
+        //Add sub links
+		add_submenu_page(
+			self::HELPER,
+			__( 'Custom CSS & JS', 'uix-styleswitcher' ),
+			__( 'Custom CSS & JS', 'uix-styleswitcher' ),
 			'manage_options',
 			'admin.php?page='.self::HELPER.'&tab=general-settings'
 		);
+		
 		
         //Add sub links
 		add_submenu_page(
@@ -200,7 +218,7 @@ class UixThemeSwitch {
 	 */
 	 public static function load_helper() {
 		 
-		 require_once UIX_PAGEBUILDER_PLUGIN_DIR.'helper/settings.php';
+		 require_once UIX_SS_PLUGIN_DIR.'helper/settings.php';
 	 }
 	
 	
@@ -312,7 +330,11 @@ class UixThemeSwitch {
 	 */
 	public static function init_ss( $str ) {
 		
-		echo '<div id="styleswitch"><img id="st-logo" src="'.self::plug_directory().'assets/images/blank.gif" alt="" /></div>';
+		$page_ids = get_option( 'uix_ss_opt_capabilitypages_result' );
+		
+		if( self::inc_str( $page_ids, get_the_ID() ) || empty( $page_ids ) ) {
+		    echo '<div id="styleswitch"><img id="st-logo" src="'.self::plug_directory().'assets/images/blank.gif" alt="" /></div>';
+		}
 
 	}
 	
@@ -978,6 +1000,47 @@ body.body-font-5 .font-normal {
 			
 	}
 		
+		
+		/**
+		 * Save the capability for this plugin settings
+		 *
+		 */
+		public static function save() {
+			
+		
+			if ( isset( $_POST[ 'custom_meta' ] ) ) {
+				$id                         = 1;
+				$raw_submitted_settings     = $_POST[ 'custom_meta' ];
+				$parsed_submitted_settings  = json_decode( stripslashes( $raw_submitted_settings ), true );
+				$submitted_settings         = array();
+				
+		
+				foreach ( $parsed_submitted_settings as $index => $value ) {
+					$name = $value[ 'name' ];
+					
+					
+					
+					// find values between square brackets
+					preg_match_all( "/\[(.*?)\]/", $name, $matches );
+		
+					if ( isset( $matches[1][0] ) && isset( $matches[1][1] ) ) {
+						$location = $matches[1][0];
+						$setting = $matches[1][1];
+						
+						
+						$submitted_settings[$location][$setting] = $value[ 'value' ];
+					}
+				}
+				update_option( 'uix_ss_opt_capabilitypages_options_'.$id, $submitted_settings );
+				update_option( 'uix_ss_opt_capabilitypages_result', $_POST[ 'result' ] );
+				
+				
+			}
+			
+	
+			wp_die();
+	
+		}	
 		
 		
 		
