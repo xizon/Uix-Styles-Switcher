@@ -97,7 +97,7 @@ function uix_styleswitcher_options_page(){
     </h2>
 
     <?php 
-		foreach ( glob( WP_PLUGIN_DIR .'/'.UixShortcodes::get_slug(). "/helper/tabs/*.php") as $file ) {
+		foreach ( glob( WP_PLUGIN_DIR .'/'.UixThemeSwitch::get_slug(). "/helper/tabs/*.php") as $file ) {
 			include $file;
 		}	
 	?>
