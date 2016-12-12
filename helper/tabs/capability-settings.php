@@ -27,7 +27,7 @@ if( current_user_can( 'administrator' ) ) {
           
           <tr>
             <th scope="row">
-              <?php _e( 'Choose A Page You Want', 'uix-styleswitcher' ); ?>
+              <?php _e( 'Choose Pages You Want', 'uix-styleswitcher' ); ?>
               
               <div class="uix-styleswitcher-capability-pages-result"></div>
             </th>

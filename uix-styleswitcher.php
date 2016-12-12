@@ -176,14 +176,6 @@ class UixThemeSwitch {
 			
 		);
 		
-        //Add sub links
-		add_submenu_page(
-			self::HELPER,
-			__( 'Capability', 'uix-styleswitcher' ),
-			__( 'Capability', 'uix-styleswitcher' ),
-			'manage_options',
-			'admin.php?page='.self::HELPER.'&tab=capability-settings'
-		);
 		
         //Add sub links
 		add_submenu_page(
@@ -192,6 +184,15 @@ class UixThemeSwitch {
 			__( 'Custom CSS & JS', 'uix-styleswitcher' ),
 			'manage_options',
 			'admin.php?page='.self::HELPER.'&tab=general-settings'
+		);
+		
+        //Add sub links
+		add_submenu_page(
+			self::HELPER,
+			__( 'Capability', 'uix-styleswitcher' ),
+			__( 'Capability', 'uix-styleswitcher' ),
+			'manage_options',
+			'admin.php?page='.self::HELPER.'&tab=capability-settings'
 		);
 		
 		
