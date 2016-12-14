@@ -835,7 +835,15 @@ body.body-font-5 .font-normal {
 								
 							}
 						}
+					},
+					2: {
+						fieldTitle: \'Page Background Color\',
+						field: \'color\',
+						id: \'bg\',
+						target: \'body\',
+						action: \'backgroundChange\'
 					}
+					
 					
 				}
 			},
@@ -984,12 +992,29 @@ body.body-font-5 .font-normal {
 			height     : 620,
 			direction  : \'right\',
 			top        : \'4em\',
-			width      : 280,
+			width      : 300,
 			height     : 500,
 			background : \'#fff\',
 			color      : \'#333\',
 			button     :\'&lt;i class="fa fa-cog fa-spin fa-2x"&gt;&lt;/i&gt;\'
 		});
+		
+		
+		styleswitch.addAction({
+			name: \'backgroundChange\',
+			trigger: \'change\',
+			action: function(event) {
+				var $this   = $(this);
+				var $val    = $this.val();
+				var $target = event.data.target;
+		
+				$( $target ).css({
+					\'background-color\': $val
+					
+				});
+			}
+		});		
+		
 		styleswitch.addOptions($options);
 
     } );
