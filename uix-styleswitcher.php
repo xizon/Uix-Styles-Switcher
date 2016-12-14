@@ -842,6 +842,29 @@ body.body-font-5 .font-normal {
 						id: \'bg\',
 						target: \'body\',
 						action: \'backgroundChange\'
+					},
+					3: {
+						fieldTitle: \'Home Slider Skin\',
+						field: \'selectBox\',
+						name: \'slider\',
+						target: \'.carousel\',
+						action: \'switchClass\',
+						actionArgs: \'light dark\',
+						options: {
+							1: {							
+								value: \'dark\',
+								text: \'Dark\',
+								width: 52,
+								height: 25,
+								default: true
+							},
+							2: {
+								value: \'light\',
+								text: \'Light\',
+								width: 52,
+								height: 25
+							}
+						}
 					}
 					
 					
@@ -1012,6 +1035,13 @@ body.body-font-5 .font-normal {
 					\'background-color\': $val
 					
 				});
+				
+				
+				/*
+				document.styleSheets[0].addRule( \'.image:after\', \'background-color: \'+$val+\' !important\' );
+				document.styleSheets[0].insertRule( \'.image:after { background-color: \'+$val+\' !important }\', 0);	
+				*/
+				
 			}
 		});		
 		
