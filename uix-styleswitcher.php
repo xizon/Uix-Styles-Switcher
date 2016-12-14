@@ -1046,6 +1046,39 @@ body.body-font-5 .font-normal {
 		});		
 		
 		styleswitch.addOptions($options);
+		
+		
+		/*
+		
+		$( \'input[name="bgpt[]"]\' ).prev( \'span\' ).on( \'click\', function() {
+			var _v   = $( this ).next( \'input\' ).val();
+			
+			if ( _v == \'side-nav-left\' ) {
+				$( \'#styleswitch\' ).css( {\'left\': \'auto\', \'right\': 0 } );
+
+			} else {
+				$( \'#styleswitch\' ).css( {\'right\': \'auto\', \'left\': 0 } );
+			}
+
+		});			
+		
+		
+		$( \'input[name="slider[]"]\' ).prev( \'span\' ).on( \'click\', function() {
+			var _v   = $( this ).next( \'input\' ).val();
+			
+			if ( _v == \'enable\' ) {
+				//do something
+
+			} else {
+				//do something
+			}
+
+		});	
+		
+		*/
+		
+		
+		
 
     } );
 } ) ( jQuery );';
