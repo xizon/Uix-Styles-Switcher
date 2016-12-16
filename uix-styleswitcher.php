@@ -332,7 +332,7 @@ class UixThemeSwitch {
 	 */
 	public static function init_ss( $str ) {
 		
-		echo '<div id="styleswitch"><img id="st-logo" src="'.self::plug_directory().'assets/images/blank.gif" alt="" /></div>'."\n\n";
+		echo '<div id="styleswitch"><img id="st-logo" src="'.self::plug_directory().'assets/images/blank.gif" alt="" /></div>'.PHP_EOL.PHP_EOL;
 		
 	}
 	
