@@ -146,7 +146,25 @@ class UixThemeSwitch {
 	 *
 	 */
 	public static function inc_str( $str, $incstr ) {
-	    
+		
+		$incstr = str_replace( '(', '\(',
+				  str_replace( ')', '\)',
+				  str_replace( '|', '\|',
+				  str_replace( '*', '\*',
+				  str_replace( '+', '\+',
+			      str_replace( '.', '\.',
+				  str_replace( '[', '\[',
+				  str_replace( ']', '\]',
+				  str_replace( '?', '\?',
+				  str_replace( '/', '\/',
+				  str_replace( '^', '\^',
+			      str_replace( '{', '\{',
+				  str_replace( '}', '\}',	
+				  str_replace( '$', '\$',
+			      str_replace( '\\', '\\\\',
+				  $incstr 
+				  )))))))))))))));
+			
 		if ( !empty( $incstr ) ) {
 			if ( preg_match( '/'.$incstr.'/', $str ) ) {
 				return true;
