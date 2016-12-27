@@ -109,17 +109,13 @@ class UixThemeSwitch {
 			  
 			  if( self::inc_str( $currentScreen->base, '_page_' ) ) {
 			  
-				if ( is_admin()) {
-					
-						//jQuery Accessible Tabs
-						wp_enqueue_script( 'accTabs', self::plug_directory() .'admin/js/jquery.accTabs.js', array( 'jquery' ), '0.1.1');
-						wp_enqueue_style( 'accTabs', self::plug_directory() .'admin/css/jquery.accTabs.css', false, '0.1.1', 'all');
-					
-						//Main
-						wp_enqueue_style( self::PREFIX . '-styleswitcher', self::plug_directory() .'admin/css/style.css', false, self::ver(), 'all');
-						
+					//jQuery Accessible Tabs
+					wp_enqueue_script( 'accTabs', self::plug_directory() .'admin/js/jquery.accTabs.js', array( 'jquery' ), '0.1.1');
+					wp_enqueue_style( 'accTabs', self::plug_directory() .'admin/css/jquery.accTabs.css', false, '0.1.1', 'all');
 
-				}
+					//Main
+					wp_enqueue_style( self::PREFIX . '-styleswitcher', self::plug_directory() .'admin/css/style.css', false, self::ver(), 'all');
+
 		  }
 		
 
