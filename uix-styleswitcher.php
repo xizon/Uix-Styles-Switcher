@@ -816,7 +816,98 @@ body.body-font-4 .font-normal {
 body.body-font-5,
 body.body-font-5 .font-normal {
 	font-family: \'Roboto Condensed\', sans-serif;
-}';
+}
+
+body.heading-font-1 h1,
+body.heading-font-1 h2,
+body.heading-font-1 h3,
+body.heading-font-1 h4,
+body.heading-font-1 h5,
+body.heading-font-1 h6,
+body.heading-font-1 .h1,
+body.heading-font-1 .h2,
+body.heading-font-1 .h3,
+body.heading-font-1 .h4,
+body.heading-font-1 .h5,
+body.heading-font-1 .h6,
+body.heading-font-1 .form-merge button[type="submit"],
+body.heading-font-1 .uix-sc-heading,
+body.heading-font-1 .uix-sc-subheading {
+    font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif;
+}
+
+body.heading-font-2 h1,
+body.heading-font-2 h2,
+body.heading-font-2 h3,
+body.heading-font-2 h4,
+body.heading-font-2 h5,
+body.heading-font-2 h6,
+body.heading-font-2 .h1,
+body.heading-font-2 .h2,
+body.heading-font-2 .h3,
+body.heading-font-2 .h4,
+body.heading-font-2 .h5,
+body.heading-font-2 .h6,
+body.heading-font-2 .form-merge button[type="submit"],
+body.heading-font-2 .uix-sc-heading,
+body.heading-font-2 .uix-sc-subheading {
+    font-family: \'Oswald\', sans-serif;
+}
+
+body.heading-font-3 h1,
+body.heading-font-3 h2,
+body.heading-font-3 h3,
+body.heading-font-3 h4,
+body.heading-font-3 h5,
+body.heading-font-3 h6,
+body.heading-font-3 .h1,
+body.heading-font-3 .h2,
+body.heading-font-3 .h3,
+body.heading-font-3 .h4,
+body.heading-font-3 .h5,
+body.heading-font-3 .h6,
+body.heading-font-3 .form-merge button[type="submit"],
+body.heading-font-3 .uix-sc-heading,
+body.heading-font-3 .uix-sc-subheading {
+    font-family: Georgia, serif;
+}
+
+body.heading-font-4 h1,
+body.heading-font-4 h2,
+body.heading-font-4 h3,
+body.heading-font-4 h4,
+body.heading-font-4 h5,
+body.heading-font-4 h6,
+body.heading-font-4 .h1,
+body.heading-font-4 .h2,
+body.heading-font-4 .h3,
+body.heading-font-4 .h4,
+body.heading-font-4 .h5,
+body.heading-font-4 .h6,
+body.heading-font-4 .form-merge button[type="submit"],
+body.heading-font-4 .uix-sc-heading,
+body.heading-font-4 .uix-sc-subheading {
+    font-family: \'Dancing Script\', cursive;
+}
+
+body.heading-font-5 h1,
+body.heading-font-5 h2,
+body.heading-font-5 h3,
+body.heading-font-5 h4,
+body.heading-font-5 h5,
+body.heading-font-5 h6,
+body.heading-font-5 .h1,
+body.heading-font-5 .h2,
+body.heading-font-5 .h3,
+body.heading-font-5 .h4,
+body.heading-font-5 .h5,
+body.heading-font-5 .h6,
+body.heading-font-5 .form-merge button[type="submit"],
+body.heading-font-5 .uix-sc-heading,
+body.heading-font-5 .uix-sc-subheading {
+    font-family: \'Roboto Condensed\', sans-serif;
+}
+';
 		}
 		
 		if ( $type == 'js' )  {
@@ -1015,6 +1106,50 @@ body.body-font-5 .font-normal {
 							},						
 							5: {
 								value: \'body-font-5\',
+								img: \'{imagepath}font-5.png\',
+								width: 38,
+								height: 38
+							}
+							
+						}
+						
+					},
+					3: {
+						fieldTitle: \'Heading\',
+						field: \'selectBox\',
+						target: \'body\',
+						actionArgs: \'heading-font-1 heading-font-2 heading-font-3 heading-font-4 heading-font-5\',
+						action: \'switchClass\',
+						name: \'themefonts-heading\',
+						options: {
+							1: {							
+								value: \'heading-font-1\',
+								img: \'{imagepath}font-1.png\',
+								width: 38,
+								height: 38,
+								default: true
+							},
+							2: {
+								value: \'heading-font-2\',
+								img: \'{imagepath}font-2.png\',
+								width: 38,
+								height: 38
+								
+							},
+							3: {
+								value: \'heading-font-3\',
+								img: \'{imagepath}font-3.png\',
+								width: 38,
+								height: 38
+							},
+							4: {
+								value: \'heading-font-4\',
+								img: \'{imagepath}font-4.png\',
+								width: 38,
+								height: 38
+							},						
+							5: {
+								value: \'heading-font-5\',
 								img: \'{imagepath}font-5.png\',
 								width: 38,
 								height: 38
