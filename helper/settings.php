@@ -104,29 +104,29 @@ function uix_styleswitcher_options_page(){
 	} 
 	
 	$tabs = array();
-	$tabs[] = [
+	$tabs[] = array(
 	    'tab'     =>  'about', 
 		'title'   =>  __( 'About', 'uix-styleswitcher' )
-	];
-	$tabs[] = [
+	);
+	$tabs[] = array(
 	    'tab'     =>  'usage', 
 		'title'   =>  __( 'How to use?', 'uix-styleswitcher' )
-	];
+	);
 	
-	$tabs[] = [
+	$tabs[] = array(
 	    'tab'     =>  'credits', 
 		'title'   =>  __( 'Credits', 'uix-styleswitcher' )
-	];
+	);
 	
-	$tabs[] = [
+	$tabs[] = array(
 	    'tab'     =>  'general-settings', 
 		'title'   =>  __( '<i class="dashicons dashicons-admin-generic"></i> Custom Styles & Javascripts', 'uix-styleswitcher' )
-	];
+	);
 	
-	$tabs[] = [
+	$tabs[] = array(
 	    'tab'     =>  'capability-settings', 
 		'title'   =>  __( '<i class="dashicons dashicons-welcome-view-site"></i> Capability', 'uix-styleswitcher' )
-	];	
+	);	
 	
 	
 	?>
