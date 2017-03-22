@@ -84,11 +84,11 @@ if( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] == 'general-settings' ) {
         
          <div class="uix-styleswitcher-dialog-mask"></div>
          <div class="uix-styleswitcher-dialog" id="uix-styleswitcher-view-css-container">  
-            <textarea rows="15" style=" width:95%;" class="regular-text" onClick="select();"><?php echo UixThemeSwitch::default_code( 'css' ); ?></textarea>
+            <textarea rows="15" style=" width:95%;" class="regular-text"><?php echo UixThemeSwitch::default_code( 'css' ); ?></textarea>
             <a href="javascript:" id="uix_styleswitcher_close_css" class="close button button-primary"><?php _e( 'Close', 'uix-styleswitcher' ); ?></a>  
         </div>
          <div class="uix-styleswitcher-dialog" id="uix-styleswitcher-view-js-container">  
-            <textarea rows="15" style=" width:95%;" class="regular-text" onClick="select();"><?php echo UixThemeSwitch::default_code( 'js' ); ?></textarea>
+            <textarea rows="15" style=" width:95%;" class="regular-text"><?php echo UixThemeSwitch::default_code( 'js' ); ?></textarea>
             <a href="javascript:" id="uix_styleswitcher_close_js" class="close button button-primary"><?php _e( 'Close', 'uix-styleswitcher' ); ?></a>  
         </div>
 
