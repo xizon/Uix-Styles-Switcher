@@ -1166,7 +1166,6 @@ body.heading-font-5 .uix-sc-subheading {
 		}
 		
 		styleswitch.style({
-			height     : 620,
 			direction  : \'right\',
 			top        : \'4em\',
 			width      : 300,
